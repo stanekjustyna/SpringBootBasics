@@ -1,9 +1,9 @@
 package js.tasks.SpringBootBasics.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
 public class FirstSpringController {
@@ -14,4 +14,23 @@ public class FirstSpringController {
 
         return "Hello, " + name + "!";
     }
+
+    @GetMapping("favourite/{number}")
+    public String getFavouriteNumber(@PathVariable int number){
+        return "Hello, your favourite number is: " + number;
+    }
+
+    @GetMapping("favourite2/{number}")
+    public String getFavouriteNumber2(@PathVariable("number") String number, @RequestParam(value="name", defaultValue="World") String name){
+
+        StringBuilder sb = new StringBuilder("Hello");
+        if(!StringUtils.isEmpty(name)){
+            sb.append(" ").append(name);
+        }
+        sb.append(", your favourite number is: ");
+        sb.append(Objects.nonNull(number) && number.matches("\\d+") ? number : "NaN");
+
+        return sb.toString();
+    }
+
 }
