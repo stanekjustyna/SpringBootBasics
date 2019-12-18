@@ -11,6 +11,9 @@ public class Animal {
     private String name;
     private int age;
 
+    public Animal() {
+    }
+
     public Animal(int id, String name, int age) {
         this.id = id;
         this.name = name;
