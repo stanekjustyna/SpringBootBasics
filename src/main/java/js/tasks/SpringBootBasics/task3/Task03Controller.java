@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 public class Task03Controller {
 
@@ -39,9 +41,12 @@ public class Task03Controller {
                 .body("Thank you, animal received!");
     }
 
-
-
-
-
-
+    @PostMapping("/post/animal")
+    public ResponseEntity<Animal> postAndGetAnimal(@RequestBody Animal animal){
+        animal.setAge(animal.getAge() + 1);
+        animal.setId(animal.getId() - 1);
+        return ResponseEntity.accepted()
+                .header("Last-Modified", LocalDate.now().toString())
+                .body(animal);
+    }
 }
