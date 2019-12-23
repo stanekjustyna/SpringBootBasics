@@ -16,7 +16,7 @@ public class Task03Controller {
 
     @PostMapping("/task03")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAnima(@RequestBody Animal animal){
+    public void addAnimal(@RequestBody Animal animal){
         LOG.info("Received Animal {}", animal);
     }
 
@@ -33,7 +33,7 @@ public class Task03Controller {
     }
 
     @PostMapping("/animal")
-    public ResponseEntity<String> addAnimal(@RequestBody Animal animal){
+    public ResponseEntity<String> addAnimal2(@RequestBody Animal animal){
         LOG.info("Received animal: {}", animal);
 
         return ResponseEntity.ok()
