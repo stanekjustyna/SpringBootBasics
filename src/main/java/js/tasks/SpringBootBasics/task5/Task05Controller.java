@@ -63,4 +63,37 @@ public class Task05Controller {
     public void saveAnimals(@RequestBody List<Animal> animals){
         animalRepository.saveAll(animals);
     }
+
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<List<Animal>> findByName(@PathVariable String name){
+        LOG.info("Searching for animal: name= {}", name);
+
+        if(animalRepository.findByName(name).isEmpty()){
+            LOG.warn("No animal found.");
+            return ResponseEntity.notFound().build();
+        }else{
+            List<Animal> animals = animalRepository.findByName(name);
+            return ResponseEntity.ok(animals);
+        }
+    }
+
+    @GetMapping("/findByAge")
+    public List<Animal> findByAge(@RequestParam int age){
+        return animalRepository.findByAge(age);
+    }
+
+    @GetMapping("/findByNameAndAge")
+    public List<Animal> findByNameAndAge(@RequestParam String name, @RequestParam int age){
+        return animalRepository.findByNameAndAge(name, age);
+    }
+
+    @GetMapping("/findFirst3ByOrderByNameAsc")
+    public List<Animal> findFirst3ByOrderByNameAsc(){
+        return animalRepository.findFirst3ByOrderByNameAsc();
+    }
+
+
+
+
+
 }
