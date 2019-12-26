@@ -15,6 +15,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @GetMapping("/getBooksNull")
+    public String getBooksNull(Model model){
+        model.addAttribute("bookList", null);
+        return "bookPage";
+    }
+
     @GetMapping("/getBooks")
     public String getBooks(Model model){
         model.addAttribute("bookList", bookService.getBooks());

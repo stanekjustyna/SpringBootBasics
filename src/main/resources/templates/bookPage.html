@@ -5,13 +5,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
-    <table>
-        <tr th:each="book: ${bookList}">
-            <td th:text="${book.id}"/>
-            <td th:text="${book.title}"/>
-            <td th:text="${book.author}"/>
-        </tr>
-    </table>
+    <div th:switch="${bookList}">
+        <div>
+            <h2 th:case="null">No books received.</h2>
+            <div th:case="*">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book: ${bookList}">
+                    <td th:text="${book.id}"/>
+                    <td th:text="${book.title}"/>
+                    <td th:text="${book.author}"/>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
