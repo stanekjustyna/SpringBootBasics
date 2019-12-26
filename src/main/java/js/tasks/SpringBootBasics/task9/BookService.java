@@ -40,4 +40,13 @@ public class BookService {
     public List<Book> getBooks(){
         return bookList;
     }
+
+    public Book getBook(long id){
+        for(Book b: bookList){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return null;
+    }
 }
