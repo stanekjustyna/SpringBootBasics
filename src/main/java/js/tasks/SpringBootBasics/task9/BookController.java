@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BookController {
@@ -18,13 +19,13 @@ public class BookController {
 
     @GetMapping("/getBooksNull")
     public String getBooksNull(Model model){
-        model.addAttribute("bookList", null);
+        final Model books = model.addAttribute("bookList", null);
         return "bookPage";
     }
 
     @GetMapping("/getBooks")
     public String getBooks(Model model){
-        model.addAttribute("bookList", bookService.getBooks());
+        final Model books = model.addAttribute("bookList", bookService.getBooks());
         return "bookPage";
     }
 
@@ -33,5 +34,18 @@ public class BookController {
         Book b = bookService.getBook(id);
         model.addAttribute("book", b);
         return "bookDetails";
+    }
+
+    @GetMapping("/addBook")
+    public String addBook(Model model){
+        model.addAttribute("book", new Book());
+        return "addBook";
+    }
+
+    @PostMapping("/addBookToList")
+    public String addBookToList(Book book, Model model){
+        bookService.addBook(book);
+        final Model books =  model.addAttribute("bookList", bookService.getBooks() );
+        return "bookPage";
     }
 }

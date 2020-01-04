@@ -49,4 +49,8 @@ public class BookService {
         }
         return null;
     }
+
+    public void addBook(Book book){
+        bookList.add(book);
+    }
 }
