@@ -6,8 +6,8 @@
 </head>
 <body>
     <div th:switch="${bookList}">
-        <div>
-            <h2 th:case="null">No books received.</h2>
+
+            <h2 th:case="${#lists.isEmpty(userList)}">No books received.</h2>
             <div th:case="*">
             <table>
                 <thead>
@@ -27,7 +27,7 @@
                 </tbody>
             </table>
             </div>
-        </div>
+
     </div>
 
     <p><a href="/addBook"/> Add a book</p>

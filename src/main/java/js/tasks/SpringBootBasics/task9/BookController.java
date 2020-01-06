@@ -48,4 +48,6 @@ public class BookController {
         final Model books =  model.addAttribute("bookList", bookService.getBooks() );
         return "bookPage";
     }
+
+
 }
